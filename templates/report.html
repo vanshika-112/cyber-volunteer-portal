@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Threat</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background:#f8fafc;
+            margin:0;
+        }
+
+        nav{
+            background:white;
+            padding:20px 80px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav a{
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:bold;
+        }
+
+        .container{
+            max-width:700px;
+            margin:50px auto;
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:25px;
+        }
+
+        input, textarea, select{
+            width:100%;
+            padding:12px;
+            margin-top:8px;
+            margin-bottom:20px;
+            border:1px solid #ddd;
+            border-radius:8px;
+        }
+
+        button{
+            background:#2563eb;
+            color:white;
+            border:none;
+            padding:12px 25px;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <nav>
+        <a href="/">← Back to Home</a>
+    </nav>
+
+    <div class="container">
+
+        <h1>Report Cyber Threat</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <label>Threat Type</label>
+
+            <select name="threat_type" id="threat_type" required>
+                <option value="">Select Threat Type</option>
+                <option>Phishing Website</option>
+                <option>Fake Application</option>
+                <option>Malicious Link</option>
+                <option>Scam Message</option>
+            </select>
+
+            <label>Title*</label>
+            <input type="text" placeholder="Enter title" name="title" required>
+
+            <label>Description*</label>
+            <textarea rows="5" placeholder="Describe the threat" name="description" required></textarea>
+
+            <label>Evidence*</label>
+            <input type="text" id="evidence" name="evidence" placeholder="Enter supporting evidence" required>
+
+            <label>Screenshot (Optional)</label>
+            <input type="file" name="screenshot" accept=".png,.jpg,.jpeg">
+
+            <button type="submit">Submit Report</button>
+
+        </form>
+
+    </div>
+
+    <script>
+
+    const threatType = document.getElementById("threat_type");
+    const evidence = document.getElementById("evidence");
+
+    threatType.addEventListener("change", function(){
+
+        if(this.value === "Phishing Website"){
+            evidence.placeholder = "Enter suspicious website URL";
+        }
+
+        else if(this.value === "Fake Application"){
+            evidence.placeholder = "Enter app name or download link";
+        }
+
+        else if(this.value === "Malicious Link"){
+            evidence.placeholder = "Enter suspicious link";
+        }
+
+        else if(this.value === "Scam Message"){
+            evidence.placeholder = "Enter phone number, sender ID, or source";
+        }
+
+    });
+
+    </script>
+</body>
+</html>
